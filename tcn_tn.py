@@ -5,7 +5,7 @@ from typing import List
 
 # keras
 import tensorflow as tf 
-from keras.layers import Conv1D, MaxPooling1D, Reshape, Input,Layer,BatchNormalization,Lambda
+from keras.layers import Conv1D, Input,Layer,BatchNormalization,Lambda
 from keras.optimizers import Adam, RMSprop
 from keras.models import Model
 from keras.layers import Input
@@ -295,7 +295,8 @@ class TCN(Layer):
             batch_size = self.build_output_shape[0]
             batch_size = batch_size if hasattr(batch_size, 'value') else batch_size
             nb_filters = self.build_output_shape[-1]
-            return [batch_size, nb_filters]
+            print([batch_size, nb_filters])
+            return (batch_size, nb_filters)
         else:
             # Compatibility tensorflow 1.x
             print([v if hasattr(v, 'value') else v for v in self.build_output_shape])
